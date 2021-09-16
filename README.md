@@ -10,6 +10,3 @@ Repositorio de ejmplos de IAWE 2 ASIR
 
 ## Mi primer programa PHP
 
-'''php
-echo "hello word";
-'''
