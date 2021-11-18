@@ -11,7 +11,7 @@
     $password_cifrado = password_hash($password,PASSWORD_DEFAULT);
 
     //Conectamos a la base de datos y ejecutamos la consulta
-    $con = conectarBD();
+    //$con = conectarBD();
     $sentencia = mysqli_prepare($con,$consulta);
 
     //Asignamos los datos a los parametros que hemos definido en la sentencia SQL

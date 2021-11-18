@@ -2,7 +2,7 @@
     session_start();
     include_once ("./funciones.php");
     generarEncabezadoHTML("Comprobación Usuario");
-    $usuario = $_POST["usuario"];
+    $usu = $_POST["usuario"];
     $pass = $_POST["pass"];
 
     $con = conectarBD();
@@ -38,6 +38,17 @@
     if (password_verify($pass,$fila["pass"]))
         echo "La contraseña es correcta";
     */
+
+
+
+    //Mostrar los archivos del usuario
+    
+    $ruta = getcwd()."/".$usu."/".date("Y");
+
+    $ficheros= scandir($ruta);
+
+    mostrarFichero($ficheros,$ruta);
+
 
 
     if (comprobarUsuario($_POST['usuario'],$_POST['pass'])){
