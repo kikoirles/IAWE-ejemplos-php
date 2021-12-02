@@ -142,8 +142,6 @@ function mostrarFichero($arrayFicheros,$ruta){
 
 }
 
-}
-
 
 //Funciones de acceso a datos Ejemplo
 
@@ -177,3 +175,4 @@ function almacenarMascota($nombreMascota,$imagen,$idEquipo){
     mysqli_stmt_execute($sentencia);
 
     desconectarBD($conexion);
+}
