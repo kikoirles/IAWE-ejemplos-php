@@ -1,5 +1,6 @@
-CREATE DATABASE `db_modular`;
-USE `db_modular`;
+DROP DATABASE IF EXISTS `AdministracionPCRS`;
+CREATE DATABASE `AdministracionPCRS`;
+USE `AdministracionPCRS`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,

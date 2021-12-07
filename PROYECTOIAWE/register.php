@@ -1,3 +1,7 @@
+<?php 
+
+include('server.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,33 +157,33 @@
                 <h2>Administration Web site</h2>
               </div>
             </div>
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 appointment_form">
               <div class="form_section">
-                <form class="form_contant" action="index.html">
-                  <fieldset class="row">
-                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="First Name" placeholder="First Name*" type="text" required>
-                  </div>
-                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="Last Name" placeholder="Last Name" type="text" required>
-                  </div>
-                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="Your Email" placeholder="Your Email" type="email" required>
-                  </div>
-                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="Your Phone Number" placeholder="Your Phone Number" type="text" required>
-                  </div>
-                  <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="password" placeholder="Password" type="password" required>
-                  </div>
-                  <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="password" placeholder="Password_Confirm" type="password" required>
-                  </div>
-                  <div class="center">
-                    <button class="btn main_bt">CREATE COUNT</button>
-                  </div>
-                  </fieldset>
-                </form>
+                <!-- end Formulario nuevo php -->
+                <form method="post" action="register.php">
+  
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>Username:</label>
+                <input type="text" name="username" value="<?php echo $username; ?>">
+              </div>
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>Email Address</label>
+                <input type="email" name="email" value="<?php echo $email; ?>">
+              </div>
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>Password:</label>
+                <input type="password" name="password_1">
+              </div>
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>Confirm password:</label>
+                <input type="password" name="password_2">
+              </div>
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <button type="submit" class="btn main_bt" name="reg_user">Register</button>
+              </div>
+                <p>Already a member? <a href="login.php">Sign in</a></p>
+              </form>
               </div>
             </div>
           </div>
