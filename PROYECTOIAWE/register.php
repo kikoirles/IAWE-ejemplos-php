@@ -408,7 +408,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
           center: {lat: 40.645037, lng: -73.880224},
-		  styles: [
+      styles: [
                {
                  elementType: 'geometry',
                  stylers: [{color: '#fefefe'}]
@@ -496,7 +496,7 @@
                  stylers: [{color: '#b1a481'}]
                }
              ]
-		});
+    });
 
         var image = 'images/it_service/location_icon_map_cont.png';
         var beachMarker = new google.maps.Marker({
