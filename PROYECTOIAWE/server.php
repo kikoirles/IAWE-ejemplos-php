@@ -1,67 +1,39 @@
 <?php
+    include_once('./funciones.php');
 
-include_once ("./funciones.php");
+    //Conectar a la base de datos
 
-session_start();
+    $conexion = conectarBD();
 
-// Variables de inilizacion
-$username = "";
-$email    = "";
-$errors = array(); 
+    
+    //Consulta que queremos ejecutar en la base de datos.
+    $query = "INSERT INTO users VALUES (?,?,?)";
 
-// Conexion base de datos
-$con = conectarBD();
+    //Preparamos la consula almacenandola en la base de datos.
+    $consultaPreparada = mysqli_prepare($conexion, $query);
 
-// REGISTER USER
-if (isset($_POST['reg_user'])) {
-  // Recibe los campos imput del formulario de registro
-  $username = mysqli_real_escape_string($con, $_POST['username']);
-  $email = mysqli_real_escape_string($con, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($con, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($con, $_POST['password_2']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password_1 = $_POST['password_1']; 
 
-  // Validacion que si el usuario a intoducido datos en el sistema  ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Username obligatorio"); }
-  if (empty($email)) { array_push($errors, "Email obligatorio"); }
-  if (empty($password_1)) { array_push($errors, "Password obligatorio"); }
-  if ($password_1 != $password_2) {array_push($errors, "Las dos contraseñas no coinciden");}
+    //Ciframos la contraseña en texto plano que hemos recibido por HTTP con el método POST
+    $password_cifrado = password_hash($password_1,PASSWORD_DEFAULT);
 
-  // Revisa primeramnete parametros de la sentecia
-  // Comprueba si el usuario existe ya en la base de datos para crearlo o no 
-  $user_check_query = "SELECT * FROM users WHERE username=? OR email=? LIMIT 1";
+    //Sustituir los parametros de la consulta
+    mysqli_stmt_bind_param($consultaPreparada,"sss",$username,$email,$password_cifrado);
 
-  $statement = mysqli_prepare ($con,$user_check_query);
+    //Ejecución de la consulta
 
-  mysqli_stmt_bind_param($statement,"ss",$username,$email);
+    $resultado = mysqli_stmt_execute($consultaPreparada);
 
-  mysqli_stmt_execute($statement);
 
-  $result = myslqi_stmt_get_result($statement);
-  
-  $user = mysqli_fetch_assoc ($result);
+    //Creaccion de carpeta de usuario registrado
+    if(!is_dir($username)) {
+    if(!mkdir($username, 0700, true)) {
+    die('Fallo al crear las carpetas...');
+    }}
 
-  if ($user) { // si el usuario existe
-    if ($user['username'] === $username) {
-      array_push($errors, "Username already exists");
-    }
 
-    if ($user['email'] === $email) {
-      array_push($errors, "email already exists");
-    }
-  }
+    echo "Se han insertado ".mysqli_stmt_affected_rows($consultaPreparada);
 
-  // Finalmente, registre usuario si no hay errores en el formulario
-  if (count($errors) == 0) {
-    $password = md5($password_1);//encrypta la contraseña antes de guardar en la base de datos
-
-    $query = "INSERT INTO users (username, email, password) 
-          VALUES('$username', '$email', '$password')";
-    mysqli_query($con, $query);
-    $_SESSION['username'] = $username;
-    $_SESSION['success'] = "You are now logged in";
-    header('location: index.html');
-  }
-}
-// ... 
-  
+    echo "Se ha producirdo un error ".mysqli_stmt_error($consultaPreparada);
