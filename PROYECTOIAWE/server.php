@@ -23,9 +23,11 @@
     mysqli_stmt_bind_param($consultaPreparada,"sss",$username,$email,$password_cifrado);
 
     //Ejecución de la consulta
-
-    $resultado = mysqli_stmt_execute($consultaPreparada);
-
+    if(mysqli_stmt_execute($consultaPreparada)>0){
+        header("Location: ./pruebamenu.php");
+    }else{
+        header("Location: ./fallosesion.html");}
+    
 
     //Creaccion de carpeta de usuario registrado
     if(!is_dir($username)) {
@@ -33,7 +35,4 @@
     die('Fallo al crear las carpetas...');
     }}
 
-
-    echo "Se ha ejecutado correctamente".mysqli_stmt_affected_rows($consultaPreparada);
-
-    echo "Se ha producirdo un error ".mysqli_stmt_error($consultaPreparada);
+    

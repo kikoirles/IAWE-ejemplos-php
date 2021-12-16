@@ -1030,3 +1030,9 @@ function comprobarUsuario($usuario,$pass){
         return false;
     }
 }
+
+function redireccionarURL($url){
+        echo "<script type='text/javascript'>
+        window.location.href = '".$url."';
+        </script>";
+    }
