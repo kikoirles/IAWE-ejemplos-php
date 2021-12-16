@@ -2,7 +2,7 @@
  
  include './funciones.php';
 
- $opciones = array("Opcion1","Opcion2");
+ $opciones = array("LOG OUT","PROFILE");
  generarHeader($opciones);
 
  generarCierre();

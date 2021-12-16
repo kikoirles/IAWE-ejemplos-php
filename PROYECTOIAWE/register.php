@@ -1,4 +1,3 @@
-<?php include('server.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +68,7 @@
             </div>
           </div>
           <div class="float-right">
-            <div class="make_appo"> <a class="btn white_btn" href="register.html">Register</a> </div>
+            <div class="make_appo"> <a class="btn white_btn" href="register.php">Register</a> </div>
             <div class="make_appo"> <a class="btn white_btn" href="login.html">Login</a> </div>
           </div>
         </div>
@@ -160,22 +159,17 @@
               <div class="form_section">
                 <!-- end Formulario nuevo php -->
                 <form method="post" action="register.php">
-  
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label>Username:</label>
-                <input type="text" name="username" value="<?php echo $username; ?>">
-              </div>
               <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label>Email Address</label>
-                <input type="email" name="email" value="<?php echo $email; ?>">
+                <input type="email" name="email">
+              </div>
+              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <label>Username:</label>
+                <input type="text" name="username">
               </div>
               <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label>Password:</label>
                 <input type="password" name="password_1">
-              </div>
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label>Confirm password:</label>
-                <input type="password" name="password_2">
               </div>
               <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <button type="submit" class="btn main_bt" name="reg_user">Register</button>
@@ -385,7 +379,7 @@
         </div>
       </div>
       <div class="cprt">
-        <p>ItNext © Copyrights 2019 Design by html.design</p>
+        <p>PCRS © Copyrights 2019 Design by html.design</p>
       </div>
     </div>
   </div>
@@ -523,3 +517,4 @@
     </script>
 </body>
 </html>
+

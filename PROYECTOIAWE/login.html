@@ -155,13 +155,16 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 appointment_form">
               <div class="form_section">
-                <form class="form_contant" action="index.html">
+                <!-- end Formulario nuevo php login -->
+                <form method="post" action="serverlogin.php">
                   <fieldset class="row">
                   <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="Your Email" placeholder="Your Email" type="email" required>
+                    <label>Username:</label>
+                    <input type="text" name="username">
                   </div>
-                  <div class="field col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input class="field_custom" name="password" placeholder="Password_Confirm" type="password" required>
+                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label>Password:</label>
+                    <input type="password"  name="password_1" required>
                   </div>
                   <div class="center">
                     <button class="btn main_bt">LOGGIN IN</button>

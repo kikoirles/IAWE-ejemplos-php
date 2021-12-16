@@ -29,11 +29,11 @@
 
     //Creaccion de carpeta de usuario registrado
     if(!is_dir($username)) {
-    if(!mkdir($username, 0700, true)) {
+    if(!mkdir($username, 0777, true)) {
     die('Fallo al crear las carpetas...');
     }}
 
 
-    echo "Se han insertado ".mysqli_stmt_affected_rows($consultaPreparada);
+    echo "Se ha ejecutado correctamente".mysqli_stmt_affected_rows($consultaPreparada);
 
     echo "Se ha producirdo un error ".mysqli_stmt_error($consultaPreparada);
