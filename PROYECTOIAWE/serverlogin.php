@@ -2,18 +2,18 @@
     session_start();
     
     include_once ("./funciones.php");
-
-    $username = $_POST['username'];
-    $password_1 = $_POST['password_1']; 
-    
+  
     //Conectar a la base de datos
 
     $conexion = conectarBD();
 
-    $sql = "SELECT password FROM user WHERE name = ?";
+    $sql = "SELECT password FROM users WHERE name = ?";
 
     //Se prepara la sentencia 
     $sentencia = mysqli_prepare($conexion,$sql);
+
+    $username = $_POST['username'];
+    $password_1 = $_POST['password_1'];
 
     //Se asocian los parámetros a la sentencia y se ejecuta la misma
     mysqli_stmt_bind_param($sentencia,"s",$username);
@@ -32,7 +32,7 @@
     if (password_verify($password_1 ,$password_cifrado)){
         header("Location: ./pruebamenu.php");
     }else{
-        echo "La contraseña no es correcta";}
+        header("Location: ./fallosesion.html");}
     
         
 

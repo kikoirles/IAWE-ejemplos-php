@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,10 +128,10 @@
         <div class="full">
           <div class="title-holder">
             <div class="title-holder-cell text-left">
-              <h1 class="page-title">Register administration</h1>
+              <h1 class="page-title">Login administration</h1>
               <ol class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li class="active">Register administration</li>
+                <li class="active">Login administration</li>
               </ol>
             </div>
           </div>
@@ -154,28 +153,24 @@
                 <h2>Administration Web site</h2>
               </div>
             </div>
-
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 appointment_form">
               <div class="form_section">
-                <!-- end Formulario nuevo php -->
-                <form method="post" action="register.php">
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label>Email Address</label>
-                <input type="email" name="email">
-              </div>
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label>Username:</label>
-                <input type="text" name="username">
-              </div>
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <label>Password:</label>
-                <input type="password" name="password_1">
-              </div>
-              <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <button type="submit" class="btn main_bt" name="reg_user">Register</button>
-              </div>
-                <p>Already a member? <a href="login.php">Sign in</a></p>
-              </form>
+                <!-- end Formulario nuevo php login -->
+                <form method="post" action="serverlogin.php">
+                  <fieldset class="row">
+                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label>Username:</label>
+                    <input type="text" name="username">
+                  </div>
+                  <div class="field col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <label>Password:</label>
+                    <input type="password"  name="password_1" required>
+                  </div>
+                  <div class="center">
+                    <button class="btn main_bt">LOGGIN IN</button>
+                  </div>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -402,7 +397,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
           center: {lat: 40.645037, lng: -73.880224},
-      styles: [
+		  styles: [
                {
                  elementType: 'geometry',
                  stylers: [{color: '#fefefe'}]
@@ -490,7 +485,7 @@
                  stylers: [{color: '#b1a481'}]
                }
              ]
-    });
+		});
 
         var image = 'images/it_service/location_icon_map_cont.png';
         var beachMarker = new google.maps.Marker({
@@ -518,4 +513,4 @@
 </body>
 </html>
 
-<?php include('server.php') ?>
+<?php include('serverlogin.php') ?>
