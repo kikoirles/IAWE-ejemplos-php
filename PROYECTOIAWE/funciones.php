@@ -22,6 +22,92 @@ function desconectarBD ($conexion){
     mysqli_close($conexion);
 }
 
+function formularioCargaArchivos($paginaAction){
+
+    echo "<form method='post' name='formularioSubida' enctype='multipart/form-data' action='".$paginaAction."'>
+            <label for='usuario'>Introduce tu nombre de usuario</label>
+            <input type='text' name=usuario id='usuario'>
+            <label for= 'upload' >Carga el fichero a subir</label>
+            <input type='file' name='upload' id='upload'>
+            <button type='submit'>Enviar Datos</button>
+        </form>";
+}
+
+function usuarioExiste($nombreUsuario){
+        $conexion = conectarBD();
+        $consulta = "SELECT * FROM user WHERE name = ?";
+
+        $sentencia = mysqli_prepare($conexion,$consulta);
+    }
+
+function mostrarFichero($arrayFicheros,$ruta){
+
+    echo "<table border=1px solid>
+        <tr>
+            <th>Nombre Fichero</th>
+            <th>Enlace Descarga </th>
+        </tr>";
+        
+        
+        foreach ($arrayFicheros as $fichero){
+            if(!($fichero == '.' || $fichero=='..')){
+            echo "<tr>
+                <td>$fichero</td>
+                <td>
+                    <a href='descargarDocumento.php?file=".$ruta."/".$fichero."'>Descargar</a>"
+                ."</td>
+            </tr>";
+            }
+        }
+
+    echo "</table>";
+
+
+}
+
+
+
+
+function listFiles($directorio){ //La función recibira como parametro un directorio
+if (is_dir($directorio)) { //Comprobamos que sea un directorio Valido
+if ($dir = opendir($directorio)) {//Abrimos el directorio
+ 
+echo '<ul>'; //Abrimos una lista HTML para mostrar los archivos
+ 
+while (($archivo = readdir($dir)) !== false){ //Comenzamos a leer archivo por archivo
+ 
+if ($archivo != '.' && $archivo != '..'){//Omitimos los archivos del sistema . y ..
+ 
+$nuevaRuta = $directorio.$archivo.'/';//Creamos unaruta con la ruta anterior y el nombre del archivo actual 
+ 
+echo '<li>'; //Abrimos un elemento de lista 
+ 
+if (is_dir($nuevaRuta)) { //Si la ruta que creamos es un directorio entonces:
+echo '<b>'.$nuevaRuta.'</b>'; //Imprimimos la ruta completa resaltandola en negrita
+listFiles($nuevaRuta);//Volvemos a llamar a este metodo para que explore ese directorio.
+ 
+} else { //si no es un directorio:
+ 
+echo 'Archivo: '.$archivo; //simplemente imprimimos el nombre del archivo actual
+ 
+}
+ 
+'</li>'; //Cerramos el item actual y se inicia la llamada al siguiente archivo
+ 
+}
+ 
+}//finaliza While
+echo '</ul>';//Se cierra la lista
+ 
+closedir($dir);//Se cierra el archivo
+}
+}else{//Finaliza el If de la linea 12, si no es un directorio valido, muestra el siguiente mensaje
+echo 'No Existe el directorio';
+}
+} 
+
+
+
 function generarHeader($arrayPestañas){
 
     echo "
@@ -124,17 +210,8 @@ function generarHeader($arrayPestañas){
                 <li> <a class='active' href='index.html'>Home</a>
                 </li>
                 <li><a href='list_productos2.php'>PRODUCTOS</a></li>
-                <li> <a href='it_service.html'>Service</a>
-                  <ul>
-                    <li><a href='it_service_list.html'>Services list</a></li>
-                    <li><a href='it_service_detail.html'>Services Detail</a></li>
-                  </ul>
-                </li>
-                <li> <a href='it_contact.html'>Contact</a>
-                  <ul>
-                    <li><a href='it_contact.html'>Contact Page 1</a></li>
-                    <li><a href='it_contact_2.html'>Contact Page 2</a></li>
-                  </ul>
+                <li><a href='subida.php'>UPLOAD</a></li>
+                <li><a href='bajada.php'>DOWLOAD</a></li>
                 </li>
               </ul>
             </div>
@@ -158,50 +235,7 @@ function generarHeader($arrayPestañas){
 function generarCierre (){
 
     echo "
-    <h2 class='center'> Why Choose Us </h2>
-            <p class='center' class='large'>Fastest repair service with best price!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-lg-3 col-md-6 col-sm-6 col-xs-12'>
-        <div class='full text_align_center margin_bottom_30'>
-          <div class='center'>
-            <div class='icon'> <img src='images/it_service/i1.png' alt='#' /> </div>
-          </div>
-          <h4 class='theme_color'>Data recovery</h4>
-          <p>Perspiciatis eos quos totam cum minima aut!</p>
-        </div>
-      </div>
-      <div class='col-lg-3 col-md-6 col-sm-6 col-xs-12'>
-        <div class='full text_align_center margin_bottom_30'>
-          <div class='center'>
-            <div class='icon'> <img src='images/it_service/i2.png' alt='#' /> </div>
-          </div>
-          <h4 class='theme_color'>Computer repair</h4>
-          <p>Perspiciatis eos quos totam cum minima aut!</p>
-        </div>
-      </div>
-      <div class='col-lg-3 col-md-6 col-sm-6 col-xs-12'>
-        <div class='full text_align_center margin_bottom_30'>
-          <div class='center'>
-            <div class='icon'> <img src='images/it_service/i3.png' alt='#' /> </div>
-          </div>
-          <h4 class='theme_color'>Mobile service</h4>
-          <p>Perspiciatis eos quos totam cum minima aut!</p>
-        </div>
-      </div>
-      <div class='col-lg-3 col-md-6 col-sm-6 col-xs-12'>
-        <div class='full text_align_center margin_bottom_30 margin_0'>
-          <div class='center'>
-            <div class='icon'> <img src='images/it_service/i4.png' alt='#' /> </div>
-          </div>
-          <h4 class='theme_color'>Network solutions</h4>
-          <p>Perspiciatis eos quos totam cum minima aut!</p>
-        </div>
-      </div>
-    </div>
+    
     <div class='row' style='margin-top: 35px'>
       <div class='col-md-8'>
         <div class='full margin_bottom_30'>

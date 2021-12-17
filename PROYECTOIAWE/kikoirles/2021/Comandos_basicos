@@ -1,0 +1,17 @@
+comandos basicos 
+
+/opt/lampp/lampp start
+/opt/lampp/lampp stop
+/opt/lampp/lampp restart
+
+ruta del navegador:
+https://localhost/IAWE-ejemplos-php/
+
+
+cd /home/christian/Documentos/IAWE/htdocs/IAWE-ejemplos-php
+
+Enlace
+cd /home/christian/Documentos/IAWE-ejemplos-php/
+
+
+chown -R christian *
