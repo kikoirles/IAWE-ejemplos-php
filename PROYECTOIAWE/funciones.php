@@ -123,7 +123,7 @@ function generarHeader($arrayPestañas){
               <ul class='first-ul'>
                 <li> <a class='active' href='index.html'>Home</a>
                 </li>
-                <li><a href='it_about.html'>About Us</a></li>
+                <li><a href='list_productos2.php'>PRODUCTOS</a></li>
                 <li> <a href='it_service.html'>Service</a>
                   <ul>
                     <li><a href='it_service_list.html'>Services list</a></li>
